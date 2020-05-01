@@ -1,4 +1,12 @@
 import axios from 'axios'
+
+export function getOnePic (parameter) {
+  return axios({
+    url: '/gao/getOnePic',
+    method: 'post',
+    data:parameter
+  })
+}
 export function deleteOne (parameter) {
   return axios({
     url: '/gao/deleteOne',
@@ -9,6 +17,27 @@ export function deleteOne (parameter) {
 export function addDaily (parameter) {
     return axios({
       url: '/gao/addDaily',
+      method: 'post',
+      data:parameter
+    })
+  }
+  export function updatePic (parameter) {
+    return axios({
+      url: '/gao/updatePic',
+      method: 'post',
+      data:parameter
+    })
+  }
+  export function getPic (parameter) {
+    return axios({
+      url: '/gao/getPic',
+      method: 'post',
+      data:parameter
+    })
+  }
+  export function addPic (parameter) {
+    return axios({
+      url: '/gao/addPic',
       method: 'post',
       data:parameter
     })

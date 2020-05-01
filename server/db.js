@@ -50,6 +50,12 @@ module.exports.findMany = function(collName,inserObj,cb){
         db.collection(collName).find(inserObj.find).project(inserObj.project).sort({date:-1}).skip((inserObj.pageNum - 1) * inserObj.pageSize).limit(inserObj.pageSize).toArray(cb);
     })
 }
+//查找多个
+module.exports.findPics = function(collName,inserObj,cb){
+    _connect(function(db){
+        db.collection(collName).find(inserObj).sort({date:-1}).toArray(cb);
+    })
+}
 //总数
 module.exports.findManyCount = function(collName,cb){
     _connect(function(db){

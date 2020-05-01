@@ -25,9 +25,9 @@
         <el-container>
             <el-aside v-show="isLeft">
                 <el-menu :collapse-transition="false" :router="true" :default-active="$route.path" class="el-menu-vertical-demo" >
-                        <el-menu-item index="/">日志管理</el-menu-item>
-                        <el-menu-item index="/adminList">管理员列表</el-menu-item>
-                        <el-menu-item index="/changePassWord">修改密码</el-menu-item>
+                        <el-menu-item index="/docs">日志管理</el-menu-item>
+                        <el-menu-item index="/pics">图片管理</el-menu-item>
+                        <el-menu-item index="/videos">视频管理</el-menu-item>
                 </el-menu>
             </el-aside>
             <el-main>
@@ -107,7 +107,7 @@ export default {
     .toolbar {
         background:#f4f4f4;
         padding:10px;
-        marign:20px 0!important;
+        margin:20px 0!important;
     }
     .el-table th,.el-table td{
         text-align:center!important;

@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-     <el-button type="primary" @click="visible=true">写笔记</el-button>
+  <div class="pics">
+     <el-button type="primary" @click="visible=true">发图片</el-button>
       <el-table
     :data="tableData"
     style="width: 100%">
@@ -21,18 +21,25 @@
       </template>
     </el-table-column>
     <el-table-column
-      label="标题">
+      label="图片名"
+      width="200">
       <template slot-scope="scope">
          <span style="margin-left: 10px">{{ scope.row.title }}</span>
       </template>
     </el-table-column>
-     <!-- <el-table-column
-     :show-overflow-tooltip="true"
-      label="内容">
+     <el-table-column
+      label="拍摄地点"
+      width="200">
       <template slot-scope="scope">
-        <span style="margin-left: 10px" class="home_content" v-html="scope.row.content"></span>
+         <span style="margin-left: 10px">{{ scope.row.place }}</span>
       </template>
-    </el-table-column> -->
+    </el-table-column>
+    <el-table-column
+      label="图片">
+      <template slot-scope="scope">
+         <span style="margin-left: 10px"><img style="width:200px" :src="scope.row.picurl" alt=""></span>
+      </template>
+    </el-table-column>
     <el-table-column label="操作" width="300">
       <template slot-scope="scope">
         <el-button
@@ -56,25 +63,25 @@
       :page-size="pageSize"
       :total="total">
     </el-pagination>
- <Dialog v-if="visible"  :visible.sync="visible" :edit.sync="edit" :id.sync="id" ></Dialog>
+ <PicDialog v-if="visible"  :visible.sync="visible" :edit.sync="edit" :id.sync="id" ></PicDialog>
   </div>
 </template>
 
 <script>
-import Dialog from '../components/Dialog'
-import {getDailyTitle,deleteOne} from '../api/index'
+import PicDialog from '../components/PicDialog'
+import {getPic,deleteOne} from '../api/index'
 
 export default {
-  name: 'Home',
+  name: 'pics',
   components:{
-    Dialog,
+    PicDialog,
   },
    data() {
       return {
         visible:false,
         tableData: [],
         currentPage:1,
-        pageSize:10,
+        pageSize:3,
         total:100,
         edit:false,
         id:null,
@@ -82,7 +89,7 @@ export default {
    },
    
    created(){
-     this.getDaily()
+     this.getPic()
    },
    filters:{
      timeFilter(val){
@@ -107,8 +114,8 @@ export default {
        this.edit = true
        this.visible = true
      },
-     getDaily(){
-       getDailyTitle({
+     getPic(){
+       getPic({
         currentPage:this.currentPage,
         pageSize:this.pageSize
       }).then(res => {
@@ -118,7 +125,7 @@ export default {
      },
      handleCurrentChange(val){
       this.currentPage = val
-      this.getDaily()
+      this.getPic()
     },
      handleDelete(index,row){
         this.$confirm('此操作将永久删除该笔记, 是否继续?', '提示', {
@@ -126,13 +133,13 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          deleteOne({id:row._id}).then(res => {
+          deleteOne({listName:'picList',id:row._id}).then(res => {
          if(res.data.ok === 1){
            this.$message({
               message: '删除成功',
               type: 'success'
            })
-           this.getDaily()
+           this.getPic()
          }
        })
         }).catch(() => {
@@ -147,7 +154,7 @@ export default {
 }
 </script>
 <style lang="less" >
-.home_content{
+.pics_content{
   img{
     display: none
   }

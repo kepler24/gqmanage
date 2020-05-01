@@ -30,7 +30,6 @@
     </div>
   </el-dialog>
 </template>
-
 <script>
 import { addDaily ,addDailyTitle,getOneDaily,updateDaily } from "../api/index";
 import { quillEditor } from "vue-quill-editor"; // 调用富文本编辑器
