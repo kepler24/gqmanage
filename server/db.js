@@ -53,7 +53,7 @@ module.exports.findMany = function(collName,inserObj,cb){
 //查找多个
 module.exports.findPics = function(collName,inserObj,cb){
     _connect(function(db){
-        db.collection(collName).find(inserObj).sort({date:-1}).toArray(cb);
+        db.collection(collName).find(inserObj.find).sort({date:-1}).skip((inserObj.pageNum - 1) * inserObj.pageSize).limit(inserObj.pageSize).toArray(cb);
     })
 }
 //总数

@@ -35,6 +35,8 @@ app.post("/gao/updatePic",function(req,res){
 //获客户端取图片表
 app.post("/gao/getPics",function(req,res){
     db.findPics("picList",{
+        pageNum:req.body.page,
+        pageSize:req.body.size
     },function (err,results) {
         if(err){ res.json({ ok:-1, msg:"失败" })
         }else{ res.json({  ok:1,  msg:"成功",data:results })}
