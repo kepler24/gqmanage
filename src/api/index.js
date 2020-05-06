@@ -7,6 +7,13 @@ export function getOnePic (parameter) {
     data:parameter
   })
 }
+export function upload (parameter) {
+  return axios({
+    url: '/gao/upload',
+    method: 'post',
+    data:parameter
+  })
+}
 export function deleteOne (parameter) {
   return axios({
     url: '/gao/deleteOne',

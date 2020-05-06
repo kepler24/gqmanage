@@ -133,7 +133,7 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          deleteOne({listName:'picList',id:row._id}).then(res => {
+          deleteOne({listName:'picList',id:row._id,picurl:row.picurl}).then(res => {
          if(res.data.ok === 1){
            this.$message({
               message: '删除成功',
