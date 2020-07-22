@@ -1,40 +1,5 @@
 <template>
-  <el-container>
-        <el-header>
-          <el-menu :collapse-transition="false"  mode="horizontal" :router="true" :default-active="$route.path" class="el-menu-demo"  v-show="!isLeft">
-                        <el-menu-item index="/">笔记管理</el-menu-item>
-                        <el-menu-item index="/adminList">管理员列表</el-menu-item>
-                        <el-menu-item index="/changePassWord">修改密码</el-menu-item>
-                </el-menu>
-            <el-row v-show="isLeft">
-                <el-col class="logo" :span="8" >
-                    <strong>{{isCollapse?'高':'小屋后台'}}</strong>
-                </el-col>
-                <el-col :span="8" class="adminInfo">
-                    <el-dropdown trigger="click">
-                        <span class="el-dropdown-link">
-                            <span></span> <img src="./assets/logo.png" alt="">
-                        </span>
-                        <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item >退出登陆</el-dropdown-item>
-                        </el-dropdown-menu>
-                    </el-dropdown>
-                </el-col>
-            </el-row>
-        </el-header>
-        <el-container>
-            <el-aside v-show="isLeft">
-                <el-menu :collapse-transition="false" :router="true" :default-active="$route.path" class="el-menu-vertical-demo" >
-                        <el-menu-item index="/docs">日志管理</el-menu-item>
-                        <el-menu-item index="/pics">图片管理</el-menu-item>
-                        <el-menu-item index="/videos">视频管理</el-menu-item>
-                </el-menu>
-            </el-aside>
-            <el-main>
                 <router-view></router-view>
-            </el-main>
-        </el-container>
-    </el-container>
 </template>
 <script>
 export default {
@@ -46,16 +11,16 @@ export default {
   },
   mounted(){
     window.onresize = () => {
-            return (() => {
-                this.screenWidth = document.body.clientWidth;
-                if(this.screenWidth < 1024){
-                  this.isLeft = false
-                }else{
-                  this.isLeft = true
-                }
-            })();
+      return (() => {
+          this.screenWidth = document.body.clientWidth;
+          if(this.screenWidth < 1024){
+            this.isLeft = false
+          }else{
+            this.isLeft = true
+          }
+        })();
       };
-  }
+    }
   
 }
 </script>

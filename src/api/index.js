@@ -85,3 +85,11 @@ export function addDaily (parameter) {
       data:parameter
     })
   }
+
+  export function login (parameter) {
+    return axios({
+      url: '/gao/login',
+      method: 'post',
+      data:parameter
+    })
+  }
