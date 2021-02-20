@@ -35,7 +35,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   mode: 'history',
-  // base: 'manage',
+  base: '/manage',
   routes
 })
 router.beforeEach((to, from, next) => {
